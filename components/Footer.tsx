@@ -68,7 +68,17 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="mt-8 pt-6 border-t border-[#DDDDDD] dark:border-white/10 text-center text-sm">
-          <p>© 2025 PT Móveis. Todos os direitos reservados.</p>
+          <p>
+            © 2025 PT Móveis. Todos os direitos reservados. | Criado por{' '}
+            <a
+              href="https://vvtrafficdata.pt/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              VVtrafficData
+            </a>
+          </p>
         </div>
       </div>
     </footer>

@@ -1,11 +1,22 @@
-
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Logo from './Logo';
 import { NAV_LINKS } from '../constants';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (e?: React.FormEvent) => {
+    e?.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/busca?q=${encodeURIComponent(searchQuery)}`);
+      setIsSearchOpen(false);
+      setSearchQuery('');
+    }
+  };
 
   return (
     <header className="w-full border-b border-solid border-b-text-light/10 dark:border-b-text-dark/10 relative z-50 bg-background-light dark:bg-background-dark">
@@ -58,18 +69,29 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             {isSearchOpen ? (
               <div className="flex items-center bg-text-light/5 dark:bg-text-dark/5 rounded-lg border border-text-light/10 dark:border-text-dark/10 overflow-hidden animate-in fade-in slide-in-from-right-4 duration-200">
-                <input
-                  type="text"
-                  placeholder="Buscar..."
-                  className="bg-transparent border-none focus:ring-0 text-sm px-3 py-2 w-32 sm:w-48 text-text-light dark:text-text-dark placeholder-text-light/50 dark:placeholder-text-dark/50 outline-none"
-                  autoFocus
-                />
-                <button
-                  onClick={() => setIsSearchOpen(false)}
-                  className="p-2 hover:bg-text-light/10 dark:hover:bg-text-dark/10 text-text-light dark:text-text-dark transition-colors"
-                >
-                  <span className="material-symbols-outlined text-[18px] block">close</span>
-                </button>
+                <form onSubmit={handleSearch} className="flex items-center">
+                  <input
+                    type="text"
+                    placeholder="Buscar..."
+                    className="bg-transparent border-none focus:ring-0 text-sm px-3 py-2 w-32 sm:w-48 text-text-light dark:text-text-dark placeholder-text-light/50 dark:placeholder-text-dark/50 outline-none"
+                    autoFocus
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  <button
+                    type="submit"
+                    className="p-2 hover:bg-text-light/10 dark:hover:bg-text-dark/10 text-text-light dark:text-text-dark transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[18px] block">search</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsSearchOpen(false)}
+                    className="p-2 hover:bg-text-light/10 dark:hover:bg-text-dark/10 text-text-light dark:text-text-dark transition-colors"
+                  >
+                    <span className="material-symbols-outlined text-[18px] block">close</span>
+                  </button>
+                </form>
               </div>
             ) : (
               <button
