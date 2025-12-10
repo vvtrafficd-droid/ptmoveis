@@ -11,6 +11,8 @@ export interface Product {
   slug: string;
   description: string;
   tag?: 'Novo' | 'Oferta' | null;
+  relatedProducts?: Product[];
+  images?: string[];
 }
 
 export interface Category {
