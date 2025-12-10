@@ -1,14 +1,18 @@
 import React from 'react';
-import { CATEGORIES } from '../constants';
+import { Category } from '../types';
 
-const CategoryGrid: React.FC = () => {
+interface CategoryGridProps {
+  categories: Category[];
+}
+
+const CategoryGrid: React.FC<CategoryGridProps> = ({ categories }) => {
   return (
     <section>
       <h2 className="text-2xl font-bold leading-tight tracking-[-0.015em] px-4 pb-4">
         Nossas Categorias
       </h2>
       <div className="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 lg:grid-cols-3">
-        {CATEGORIES.map((cat) => (
+        {categories.map((cat) => (
           <div
             key={cat.id}
             className="group relative flex h-64 flex-col justify-end overflow-hidden rounded-xl bg-cover bg-center p-4 transition-all duration-500 hover:scale-[1.02] cursor-pointer shadow-md hover:shadow-xl"

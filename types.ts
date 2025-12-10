@@ -2,9 +2,14 @@
 export interface Product {
   id: string;
   name: string;
-  price: string;
+  price: number;
+  promotionalPrice: number;
+  hasPromotionalPrice: boolean;
   image: string;
-  category?: string;
+  category: string;
+  categorySlug: string;
+  slug: string;
+  description: string;
   tag?: 'Novo' | 'Oferta' | null;
 }
 
@@ -12,6 +17,7 @@ export interface Category {
   id: string;
   title: string;
   image: string;
+  slug: string;
 }
 
 export interface NavLink {
