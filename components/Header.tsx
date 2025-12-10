@@ -29,7 +29,7 @@ const Header: React.FC = () => {
                     <span className="material-symbols-outlined text-[16px]">expand_more</span>
                   )}
                 </a>
-                
+
                 {/* Desktop Dropdown */}
                 {link.subcategories && (
                   <div className="absolute top-full left-0 hidden group-hover:block pt-2 w-56 animate-in fade-in slide-in-from-top-2 duration-200">
@@ -53,18 +53,18 @@ const Header: React.FC = () => {
 
         {/* Icons & Mobile Toggle */}
         <div className="flex items-center gap-2">
-          
+
           {/* Search Component */}
           <div className="flex items-center">
             {isSearchOpen ? (
               <div className="flex items-center bg-text-light/5 dark:bg-text-dark/5 rounded-lg border border-text-light/10 dark:border-text-dark/10 overflow-hidden animate-in fade-in slide-in-from-right-4 duration-200">
-                <input 
-                  type="text" 
-                  placeholder="Buscar..." 
+                <input
+                  type="text"
+                  placeholder="Buscar..."
                   className="bg-transparent border-none focus:ring-0 text-sm px-3 py-2 w-32 sm:w-48 text-text-light dark:text-text-dark placeholder-text-light/50 dark:placeholder-text-dark/50 outline-none"
                   autoFocus
                 />
-                <button 
+                <button
                   onClick={() => setIsSearchOpen(false)}
                   className="p-2 hover:bg-text-light/10 dark:hover:bg-text-dark/10 text-text-light dark:text-text-dark transition-colors"
                 >
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <button 
+              <button
                 onClick={() => setIsSearchOpen(true)}
                 className="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-text-light/10 dark:bg-text-dark/10 text-text-light dark:text-text-dark hover:bg-primary/20 transition-colors"
               >
@@ -82,9 +82,9 @@ const Header: React.FC = () => {
           </div>
 
           {/* Social Icons (Replacing User Icon) */}
-          <a 
-            href="https://instagram.com" 
-            target="_blank" 
+          <a
+            href="https://www.instagram.com/ptmov_eis"
+            target="_blank"
             rel="noopener noreferrer"
             className="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-text-light/10 dark:bg-text-dark/10 text-text-light dark:text-text-dark hover:bg-primary/20 hover:text-primary transition-colors"
             title="Instagram"
@@ -96,9 +96,9 @@ const Header: React.FC = () => {
             </svg>
           </a>
 
-          <a 
-            href="https://facebook.com" 
-            target="_blank" 
+          <a
+            href="https://www.facebook.com/ptmoveis"
+            target="_blank"
             rel="noopener noreferrer"
             className="flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-text-light/10 dark:bg-text-dark/10 text-text-light dark:text-text-dark hover:bg-primary/20 hover:text-primary transition-colors"
             title="Facebook"
@@ -107,9 +107,9 @@ const Header: React.FC = () => {
               <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
             </svg>
           </a>
-          
+
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="md:hidden flex h-10 w-10 cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-text-light/10 dark:bg-text-dark/10 text-text-light dark:text-text-dark hover:bg-primary/20 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -120,30 +120,30 @@ const Header: React.FC = () => {
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-background-light dark:bg-background-dark border-b border-text-light/10 dark:border-b-text-dark/10 p-4 md:hidden shadow-lg flex flex-col gap-2 z-50 max-h-[80vh] overflow-y-auto">
-             {NAV_LINKS.map((link) => (
-               <div key={link.label} className="flex flex-col">
-                  <a
-                    className="text-base font-medium leading-normal hover:text-primary transition-colors block py-2 px-2 rounded hover:bg-black/5 dark:hover:bg-white/5"
-                    href={link.href}
-                    onClick={() => !link.subcategories && setMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </a>
-                  {link.subcategories && (
-                    <div className="pl-6 flex flex-col border-l border-text-light/10 dark:border-text-dark/10 ml-2">
-                       {link.subcategories.map(sub => (
-                         <a 
-                           key={sub.label} 
-                           href={sub.href}
-                           className="text-sm py-2 px-2 text-text-light/80 dark:text-text-dark/80 hover:text-primary block"
-                           onClick={() => setMobileMenuOpen(false)}
-                         >
-                           {sub.label}
-                         </a>
-                       ))}
-                    </div>
-                  )}
-               </div>
+            {NAV_LINKS.map((link) => (
+              <div key={link.label} className="flex flex-col">
+                <a
+                  className="text-base font-medium leading-normal hover:text-primary transition-colors block py-2 px-2 rounded hover:bg-black/5 dark:hover:bg-white/5"
+                  href={link.href}
+                  onClick={() => !link.subcategories && setMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+                {link.subcategories && (
+                  <div className="pl-6 flex flex-col border-l border-text-light/10 dark:border-text-dark/10 ml-2">
+                    {link.subcategories.map(sub => (
+                      <a
+                        key={sub.label}
+                        href={sub.href}
+                        className="text-sm py-2 px-2 text-text-light/80 dark:text-text-dark/80 hover:text-primary block"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {sub.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         )}

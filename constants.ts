@@ -2,7 +2,7 @@
 import { Category, NavLink, Product } from "./types";
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "Início", href: "#" },
+  { label: "Início", href: "/" },
   {
     label: "Coleções",
     href: "#collections",
@@ -20,8 +20,8 @@ export const NAV_LINKS: NavLink[] = [
       { label: "MÓVEL SALA", href: "#movel-sala" },
     ]
   },
-  { label: "Sobre Nós", href: "#about" },
-  { label: "Contato", href: "#contact" },
+  // { label: "Sobre Nós", href: "#about" },
+  // { label: "Contato", href: "#contact" },
 ];
 
 
