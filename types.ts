@@ -13,6 +13,7 @@ export interface Product {
   tag?: 'Novo' | 'Oferta' | null;
   relatedProducts?: Product[];
   images?: string[];
+  code: string;
 }
 
 export interface Category {

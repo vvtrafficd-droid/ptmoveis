@@ -128,9 +128,15 @@ const ProductDetails: React.FC = () => {
                         </div>
 
                         <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                            <button className="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-full hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.98]">
-                                Adicionar ao Carrinho
-                            </button>
+                            <a
+                                href={`https://api.whatsapp.com/send?phone=351939076117&text=${encodeURIComponent(`*Quero comprar esse produto e saber mais informações:*\n${product.name.toUpperCase()}\nCódigo: ${product.code}\nPreço: ${product.hasPromotionalPrice ? product.promotionalPrice : product.price}€\nEndereço web do produto: https://ptmoveis.pt/produto/${product.slug}`)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex-1 bg-primary text-white font-bold py-4 px-8 rounded-full hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.98] flex items-center justify-center gap-2"
+                            >
+                                <span className="material-symbols-outlined">chat</span>
+                                Quero Comprar
+                            </a>
                             <button className="flex items-center justify-center gap-2 aspect-square sm:aspect-auto sm:w-16 rounded-full border border-text-light/20 hover:border-text-light/80 transition-colors text-text-light">
                                 <Heart size={20} />
                             </button>

@@ -45,6 +45,7 @@ const mapApiProductToProduct = (prod: ApiProduct): Product => {
         categorySlug: prod.categoria?.slug || '',
         slug: prod.slug,
         description: prod.descricao,
+        code: prod.codigo,
         relatedProducts: prod.produtosRelacionados ? prod.produtosRelacionados.map(p => ({
             id: p.id,
             name: p.nome,
@@ -56,6 +57,7 @@ const mapApiProductToProduct = (prod: ApiProduct): Product => {
             categorySlug: p.categoria?.slug || '',
             slug: p.slug,
             description: p.descricao,
+            code: p.codigo,
         })) : []
     };
 };
