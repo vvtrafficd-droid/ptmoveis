@@ -1,6 +1,7 @@
 import { Category, Product } from '../types';
 
 export const API_BASE_URL = 'https://api.ptmoveis.pt';
+export const IMAGE_BASE_URL = 'https://painel.ptmoveis.pt';
 
 export interface ApiCategory {
     id: string;
@@ -32,7 +33,7 @@ export const fetchCategories = async (skip = 0, take = 50): Promise<Category[]> 
             return data.data.map((cat: ApiCategory) => ({
                 id: cat.id,
                 title: cat.nome,
-                image: cat.imagem.startsWith('http') ? cat.imagem : `${API_BASE_URL}${cat.imagem}`,
+                image: cat.imagem.startsWith('http') ? cat.imagem : `${IMAGE_BASE_URL}${cat.imagem}`,
                 slug: cat.slug,
             }));
         }
@@ -54,7 +55,7 @@ export const fetchProducts = async (): Promise<Product[]> => {
                 price: prod.preco,
                 promotionalPrice: prod.precoPromocional,
                 hasPromotionalPrice: prod.habilitaPrecoPromocional,
-                image: prod.thumb.startsWith('http') ? prod.thumb : `${API_BASE_URL}${prod.thumb}`,
+                image: prod.thumb.startsWith('http') ? prod.thumb : `${IMAGE_BASE_URL}${prod.thumb}`,
                 category: prod.categoria?.nome || '',
                 categorySlug: prod.categoria?.slug || '',
                 slug: prod.slug,
