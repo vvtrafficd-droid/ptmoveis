@@ -34,7 +34,7 @@ const Hero: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="w-full h-[520px] bg-gray-200 animate-pulse rounded-xl flex items-center justify-center">
+      <div className="w-full h-[330px] md:h-[420px] bg-gray-200 animate-pulse rounded-xl flex items-center justify-center">
         <span className="sr-only">Carregando banner...</span>
       </div>
     );
@@ -42,29 +42,29 @@ const Hero: React.FC = () => {
 
   if (slides.length === 0) {
     return (
-      <div className="w-full h-[520px] bg-gray-100 rounded-xl flex items-center justify-center">
+      <div className="w-full h-[230px] md:h-[420px] bg-gray-100 rounded-xl flex items-center justify-center">
         <p className="text-gray-400">Banner indisponível</p>
       </div>
     )
   }
 
   return (
-    <section className="@container relative w-full overflow-hidden rounded-xl shadow-xl group">
+    <section className="@container relative w-full overflow-hidden rounded-xl md:shadow-xl group h-[200px] md:h-[420px]">
       <div
-        className="flex transition-transform duration-700 ease-in-out h-[520px] w-full"
+        className="flex transition-transform duration-700 ease-in-out w-full  md:h-[420px]"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
         {slides.map((slide) => (
           <div
             key={slide.id}
-            className="w-full h-full flex-shrink-0 relative"
+            className="w-full h-full flex-shrink-0 relative "
           >
             {slide.link ? (
               <a href={slide.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
                 <img
                   src={slide.image}
                   alt={slide.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain md:object-cover"
                 />
                 <div className="absolute inset-0 pointer-events-none" />
               </a>
@@ -73,9 +73,9 @@ const Hero: React.FC = () => {
                 <img
                   src={slide.image}
                   alt={slide.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain md:object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 pointer-events-none" />
               </>
             )}
 
@@ -91,7 +91,7 @@ const Hero: React.FC = () => {
 
       {/* Navigation Dots */}
       {slides.length > 1 && (
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10 hidden md:block">
           {slides.map((_, index) => (
             <button
               key={index}
