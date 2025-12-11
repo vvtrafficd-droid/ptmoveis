@@ -11,8 +11,7 @@ const Footer: React.FC = () => {
               <Logo className="h-20 w-auto" />
             </div>
             <p className="text-sm max-w-sm">
-              Móveis Premium com Design Contemporâneo para transformar o seu
-              espaço.
+              Crie memórias inesquecíveis em um ambiente que reflete o seu estilo!
             </p>
             <div className="flex gap-4 mt-2">
               <a
