@@ -9,6 +9,7 @@ import ProductSection from './components/ProductSection';
 import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 import SearchResults from './components/SearchResults';
+import CategoryPage from './components/CategoryPage';
 import { fetchCategories, fetchProducts } from './services/api';
 import { Category, Product } from './types';
 
@@ -101,6 +102,7 @@ const App: React.FC = () => {
                   />
                 } />
                 <Route path="/produto/:slug" element={<ProductDetails />} />
+                <Route path="/categoria/:slug" element={<CategoryPage />} />
                 <Route path="/busca" element={<SearchResults products={products} />} />
               </Routes>
 

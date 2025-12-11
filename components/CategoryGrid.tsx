@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Category } from '../types';
 
 interface CategoryGridProps {
@@ -13,7 +14,8 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({ categories }) => {
       </h2>
       <div className="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((cat) => (
-          <div
+          <Link
+            to={`/categoria/${cat.slug}`}
             key={cat.id}
             className="group relative flex h-64 flex-col justify-end overflow-hidden rounded-xl bg-cover bg-center p-4 transition-all duration-500 hover:scale-[1.02] cursor-pointer shadow-md hover:shadow-xl"
             style={{
@@ -25,7 +27,7 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({ categories }) => {
               {cat.title}
             </p>
             <div className="h-1 w-0 bg-primary group-hover:w-12 transition-all duration-300 absolute bottom-4 left-4" />
-          </div>
+          </Link>
         ))}
       </div>
     </section>
