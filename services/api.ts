@@ -1,7 +1,33 @@
-import { Category, Product } from '../types';
+import { Category, Product, Slide } from '../types';
 
 export const API_BASE_URL = 'https://api.ptmoveis.pt';
 export const IMAGE_BASE_URL = 'https://painel.ptmoveis.pt';
+
+export interface ApiSlide {
+    id: string;
+    titulo: string;
+    imagem: string;
+    link: string;
+}
+
+export const fetchSlides = async (skip = 0, take = 100): Promise<Slide[]> => {
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/v1/slides/get?Skip=${skip}&Take=${take}`);
+        const data = await response.json();
+        if (data.success && Array.isArray(data.data)) {
+            return data.data.map((slide: ApiSlide) => ({
+                id: slide.id,
+                title: slide.titulo,
+                image: slide.imagem.startsWith('http') ? slide.imagem : `${IMAGE_BASE_URL}${slide.imagem}`,
+                link: slide.link,
+            }));
+        }
+        return [];
+    } catch (error) {
+        console.error("Error fetching slides:", error);
+        return [];
+    }
+};
 
 export interface ApiCategory {
     id: string;

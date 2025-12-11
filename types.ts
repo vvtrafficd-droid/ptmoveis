@@ -16,6 +16,13 @@ export interface Product {
   code: string;
 }
 
+export interface Slide {
+  id: string;
+  title: string;
+  image: string;
+  link: string;
+}
+
 export interface Category {
   id: string;
   title: string;
