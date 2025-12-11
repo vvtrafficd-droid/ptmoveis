@@ -137,9 +137,7 @@ const ProductDetails: React.FC = () => {
                                 <span className="material-symbols-outlined">chat</span>
                                 Quero Comprar
                             </a>
-                            <button className="flex items-center justify-center gap-2 aspect-square sm:aspect-auto sm:w-16 rounded-full border border-text-light/20 hover:border-text-light/80 transition-colors text-text-light">
-                                <Heart size={20} />
-                            </button>
+
                         </div>
 
                         <div className="flex flex-col gap-4 text-sm text-text-light/70">

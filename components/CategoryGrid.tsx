@@ -17,7 +17,7 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({ categories }) => {
           <Link
             to={`/categoria/${cat.slug}`}
             key={cat.id}
-            className="group relative flex h-64 flex-col justify-end overflow-hidden rounded-xl bg-cover bg-center p-4 transition-all duration-500 hover:scale-[1.02] cursor-pointer shadow-md hover:shadow-xl"
+            className="group relative flex h-40 md:h-64 flex-col justify-end overflow-hidden rounded-xl bg-cover bg-center p-4 transition-all duration-500 hover:scale-[1.02] cursor-pointer shadow-md hover:shadow-xl"
             style={{
               backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%), url("${cat.image}")`,
             }}
