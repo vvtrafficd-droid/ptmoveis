@@ -82,6 +82,8 @@ const ProductDetails: React.FC = () => {
                                 src={activeImage}
                                 alt={product.name}
                                 className="w-full h-full object-cover object-center"
+                                loading="eager"
+                                {...({ fetchpriority: "high" } as any)}
                             />
                             {product.tag && (
                                 <span className="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
@@ -98,7 +100,7 @@ const ProductDetails: React.FC = () => {
                                         onClick={() => setActiveImage(img)}
                                         className={`aspect-square rounded-lg overflow-hidden border-2 transition-all ${activeImage === img ? 'border-primary' : 'border-transparent hover:border-gray-300'}`}
                                     >
-                                        <img src={img} alt={`${product.name} view ${index + 1}`} className="w-full h-full object-cover" />
+                                        <img src={img} alt={`${product.name} view ${index + 1}`} className="w-full h-full object-cover" loading="lazy" decoding="async" />
                                     </button>
                                 ))}
                             </div>

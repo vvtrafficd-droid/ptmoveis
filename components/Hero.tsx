@@ -54,7 +54,7 @@ const Hero: React.FC = () => {
         className="flex transition-transform duration-700 ease-in-out w-full  md:h-[420px]"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}
       >
-        {slides.map((slide) => (
+        {slides.map((slide, index) => (
           <div
             key={slide.id}
             className="w-full h-full flex-shrink-0 relative "
@@ -65,6 +65,9 @@ const Hero: React.FC = () => {
                   src={slide.image}
                   alt={slide.title}
                   className="w-full h-full object-contain md:object-cover"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  {...({ fetchpriority: index === 0 ? "high" : "auto" } as any)}
+                  decoding={index === 0 ? "sync" : "async"}
                 />
                 <div className="absolute inset-0 pointer-events-none" />
               </a>
@@ -74,6 +77,9 @@ const Hero: React.FC = () => {
                   src={slide.image}
                   alt={slide.title}
                   className="w-full h-full object-contain md:object-cover"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  {...({ fetchpriority: index === 0 ? "high" : "auto" } as any)}
+                  decoding={index === 0 ? "sync" : "async"}
                 />
                 <div className="absolute inset-0 pointer-events-none" />
               </>

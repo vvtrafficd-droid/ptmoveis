@@ -15,6 +15,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           src={product.image}
           alt={product.name}
           loading="lazy"
+          decoding="async"
         />
         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <button className="bg-white/90 p-2 rounded-full shadow-lg hover:bg-primary hover:text-white transition-colors" onClick={(e) => e.preventDefault()}>

@@ -17,20 +17,26 @@ const CategoryGrid: React.FC<CategoryGridProps> = ({ categories }) => {
           <Link
             to={`/categoria/${cat.slug}`}
             key={cat.id}
-            className="group relative flex h-40 md:h-64 flex-col justify-end overflow-hidden rounded-xl bg-cover bg-center p-4 transition-all duration-500 hover:scale-[1.02] cursor-pointer shadow-md hover:shadow-xl"
-            style={{
-              backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%), url("${cat.image}")`,
-            }}
+            className="group relative flex h-40 md:h-64 flex-col justify-end overflow-hidden rounded-xl p-4 transition-all duration-500 hover:scale-[1.02] cursor-pointer shadow-md hover:shadow-xl"
           >
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+            <img
+              src={cat.image}
+              alt={cat.title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-0" />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 z-0" />
+
             <p className="text-white text-lg font-bold leading-tight relative z-10 translate-y-0 group-hover:-translate-y-1 transition-transform duration-300">
               {cat.title}
             </p>
-            <div className="h-1 w-0 bg-primary group-hover:w-12 transition-all duration-300 absolute bottom-4 left-4" />
+            <div className="h-1 w-0 bg-primary group-hover:w-12 transition-all duration-300 absolute bottom-4 left-4 z-10" />
           </Link>
         ))}
       </div>
-    </section>
+    </section >
   );
 };
 
