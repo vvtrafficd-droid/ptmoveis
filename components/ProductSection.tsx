@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Product } from '../types';
 import ProductCard from './ProductCard';
 
@@ -22,12 +23,12 @@ const ProductSection: React.FC<ProductSectionProps> = ({
           {title}
         </h2>
         {viewAllLink && (
-          <a
+          <Link
             className="text-sm font-semibold text-accent hover:underline hover:text-primary transition-colors"
-            href={viewAllLink}
+            to={viewAllLink}
           >
             Ver todos
-          </a>
+          </Link>
         )}
       </div>
       <div className="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

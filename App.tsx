@@ -36,9 +36,9 @@ const HomePage: React.FC<{
         <FeaturesBanner />
         <CategoryGrid categories={categories} />
         <ProductSection title="Os Mais Vendidos" products={bestSellers} />
-        <ProductSection title="Camas de Casal" products={beds} viewAllLink="#beds" />
-        <ProductSection title="Aparadores" products={sideboards} viewAllLink="#sideboards" />
-        <ProductSection title="Sofás" products={sofas} viewAllLink="#sofas" />
+        <ProductSection title="Camas de Casal" products={beds} viewAllLink="/categoria/camas-de-casal" />
+        <ProductSection title="Aparadores" products={sideboards} viewAllLink="/categoria/aparador" />
+        <ProductSection title="Sofás" products={sofas} viewAllLink="/categoria/sofas" />
       </main>
     </>
   );
