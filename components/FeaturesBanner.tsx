@@ -4,18 +4,13 @@ const FeaturesBanner: React.FC = () => {
   const features = [
     {
       icon: "verified",
-      title: "Garantia de 3 anos",
-      description: "Todos nossos produtos contam com garantia e suporte de até 3 anos para sua segurança!"
+      title: "Garantia de 1 a 3 anos",
+      description: "Todos nossos produtos contam com garantia e suporte para sua segurança!"
     },
     {
       icon: "local_shipping",
       title: "Entrega e montagem",
       description: "Contamos com profissionais capacitados e altamente treinados para melhor atendimento."
-    },
-    {
-      icon: "payments",
-      title: "Pagamento na entrega",
-      description: "Sem necessidade de pagamento antecipado ou qualquer tipo de sinal."
     },
     {
       icon: "support_agent",
@@ -26,7 +21,7 @@ const FeaturesBanner: React.FC = () => {
 
   return (
     <section className="w-full bg-[#F5F5F5] dark:bg-[#2a271f] py-8 rounded-lg">
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 px-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-10 px-6">
         {features.map((feature, index) => (
           <div key={index} className="flex items-start gap-4">
             <div className="shrink-0 text-text-light dark:text-text-dark">
