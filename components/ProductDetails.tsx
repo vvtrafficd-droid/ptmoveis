@@ -149,12 +149,9 @@ const ProductDetails: React.FC = () => {
                             </div>
                             <div className="flex items-center gap-3">
                                 <Truck size={18} className="text-primary" />
-                                <span>Entrega gratuita em Portugal Continental</span>
+                                <span>Entrega gratuita na nossa proximidades</span>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <ShieldCheck size={18} className="text-primary" />
-                                <span>Garantia de 2 anos incluída</span>
-                            </div>
+
                         </div>
                     </div>
                 </div>
