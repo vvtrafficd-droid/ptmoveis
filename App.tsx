@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
@@ -10,8 +9,9 @@ import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 import SearchResults from './components/SearchResults';
 import CategoryPage from './components/CategoryPage';
-import { fetchCategories, fetchProducts } from './services/api';
-import { Category, Product } from './types';
+import Preloader from './components/Preloader';
+import { fetchCategories, fetchProducts, fetchSlides } from './services/api';
+import { Category, Product, Slide } from './types';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -28,11 +28,12 @@ const HomePage: React.FC<{
   beds: Product[];
   sideboards: Product[];
   sofas: Product[];
-}> = ({ categories, bestSellers, beds, sideboards, sofas }) => {
+  slides: Slide[];
+}> = ({ categories, bestSellers, beds, sideboards, sofas, slides }) => {
   return (
     <>
       <main className="flex flex-col w-full max-w-[1440px] mx-auto px-4 sm:px-8 py-10 gap-16">
-        <Hero />
+        <Hero slides={slides} />
         <FeaturesBanner />
         <CategoryGrid categories={categories} />
         <ProductSection title="Os Mais Vendidos" products={bestSellers} />
@@ -47,17 +48,63 @@ const HomePage: React.FC<{
 const App: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [slides, setSlides] = useState<Slide[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const [categoriesData, productsData] = await Promise.all([
+        const [categoriesData, productsData, slidesData] = await Promise.all([
           fetchCategories(),
-          fetchProducts()
+          fetchProducts(),
+          fetchSlides(),
         ]);
         setCategories(categoriesData);
         setProducts(productsData);
+        setSlides(slidesData);
+
+        // Preload logic: Wait for critical resources
+        const promises: Promise<any>[] = [];
+
+        // 1. Preload Fonts (Material Symbols) to prevent icon popping
+        // We try to wait for document.fonts.ready, but set a timeout so we don't block forever
+        const fontPromise = new Promise<void>(resolve => {
+          if ('fonts' in document) {
+            document.fonts.ready.then(() => resolve()).catch(() => resolve());
+          } else {
+            setTimeout(resolve, 0); // fallback for older browsers
+          }
+        });
+        promises.push(fontPromise);
+
+        // 2. Preload first Hero Slide
+        if (slidesData.length > 0) {
+          promises.push(new Promise((resolve) => {
+            const img = new Image();
+            img.src = slidesData[0].image;
+            img.onload = resolve;
+            img.onerror = resolve;
+          }));
+        }
+
+        // 3. Preload top 4 Categories (usually visible or just below fold)
+        const topCategories = categoriesData.slice(0, 4);
+        topCategories.forEach(cat => {
+          promises.push(new Promise((resolve) => {
+            const img = new Image();
+            img.src = cat.image;
+            img.onload = resolve;
+            img.onerror = resolve;
+          }));
+        });
+
+        // Race against a safety timeout of 4 seconds (in case some image is stuck)
+        // This ensures the user isn't stuck on loading screen forever
+        await Promise.race([
+          Promise.all(promises),
+          new Promise(resolve => setTimeout(resolve, 4000))
+        ]);
+
       } catch (error) {
         console.error("Failed to load data", error);
       } finally {
@@ -74,11 +121,7 @@ const App: React.FC = () => {
   const sofas = products.filter(p => p.categorySlug === 'sofas').slice(0, 4);
 
   if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
-      </div>
-    );
+    return <Preloader />;
   }
 
   return (
@@ -99,6 +142,7 @@ const App: React.FC = () => {
                     beds={beds}
                     sideboards={sideboards}
                     sofas={sofas}
+                    slides={slides}
                   />
                 } />
                 <Route path="/produto/:slug" element={<ProductDetails />} />

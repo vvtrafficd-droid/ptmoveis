@@ -1,26 +1,12 @@
 
 import React, { useEffect, useState } from 'react';
-import { fetchSlides } from '../services/api';
 import { Slide } from '../types';
 
-const Hero: React.FC = () => {
-  const [slides, setSlides] = useState<Slide[]>([]);
+const Hero: React.FC<{ slides: Slide[] }> = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const loadSlides = async () => {
-      try {
-        const data = await fetchSlides();
-        setSlides(data);
-      } catch (error) {
-        console.error("Failed to load slides", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadSlides();
-  }, []);
+  // Remove internal fetching logic since data is passed from App.tsx
+  // useEffect(() => { ... }, []); removed
 
   useEffect(() => {
     if (slides.length <= 1) return;
@@ -32,13 +18,7 @@ const Hero: React.FC = () => {
     return () => clearInterval(interval);
   }, [slides.length]);
 
-  if (loading) {
-    return (
-      <div className="w-full h-[330px] md:h-[420px] bg-gray-200 animate-pulse rounded-xl flex items-center justify-center">
-        <span className="sr-only">Carregando banner...</span>
-      </div>
-    );
-  }
+
 
   if (slides.length === 0) {
     return (
